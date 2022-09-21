@@ -28,3 +28,7 @@ You can find me on github at https://github.com/undefined
 Additional Questions you can email me at cronogy@gmail.com
 ### License
 The software is available to all under the MIT license. You can learn more about this license at https://opensource.org/licenses/MIT
+### Deployed Application
+Here is the deployed application link https://jot-it-down-omarfarah123.herokuapp.com/
+### Screenshot of application
+![JotItDown](https://user-images.githubusercontent.com/76454677/191522466-76f33725-4bbd-4858-bc34-798e0fbc3e12.png)
