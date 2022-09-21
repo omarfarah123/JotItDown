@@ -46,7 +46,7 @@ app.post('/api/notes', function (req, res) {
         const newNote = {
           title,
           text,
-          note_id: uuid(),
+          id: uuid(),
         };
         console.log(newNote);
               // Obtain existing notes
@@ -81,6 +81,41 @@ app.post('/api/notes', function (req, res) {
       }
     } catch (error) {
       res.json("problem adding note")
+    }
+  })
+
+  app.delete('/api/notes/:id', function(req, res) {
+    try{
+      fs.readFile(path.join(__dirname, '/db/db.json'), 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+          // Convert string into JSON object
+          const parsedNotes = JSON.parse(data);
+          
+          var updatedNotes = [];
+  
+          for(let i = 0; i < parsedNotes.length; i++){
+            var note = parsedNotes[i];
+            if(note.id !== req.params.id){
+              updatedNotes.push(note)
+            }
+          }
+          // Write updated reviews back to the file
+          fs.writeFile(
+            path.join(__dirname, '/db/db.json'),
+            JSON.stringify(updatedNotes, null, 4),
+            (err) => {
+              if(err){
+                console.error(err)
+              } 
+              res.json(updatedNotes)
+            }
+          );
+        }
+      });
+    } catch (err){
+      res.json("Problem finding note")
     }
   })
 
